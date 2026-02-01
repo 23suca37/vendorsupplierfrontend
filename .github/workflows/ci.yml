@@ -1,4 +1,4 @@
-name: Full Stack CI Pipeline
+name: Frontend CI Pipeline
 
 on:
   push:
@@ -7,25 +7,6 @@ on:
     branches: [ "main", "master" ]
 
 jobs:
-
-  backend-build:
-    name: Spring Boot CI
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Build Backend
-        working-directory: backend
-        run: mvn clean install
-
 
   frontend-build:
     name: React CI
@@ -41,9 +22,8 @@ jobs:
           node-version: '18'
 
       - name: Install dependencies
-        working-directory: frontend
         run: npm install
 
       - name: Build React App
-        working-directory: frontend
         run: npm run build
+
